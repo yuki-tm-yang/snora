@@ -3,8 +3,14 @@ import "jsr:@std/dotenv/load";
 const API_KEY = Deno.env.get("API_KEY");
 const CHANNEL_ID = Deno.env.get("CHANNEL_ID");
 
-if (!API_KEY) throw new Error("Missing env var: API_KEY");
-if (!CHANNEL_ID) throw new Error("Missing env var: CHANNEL_ID");
+if (!API_KEY) {
+  console.error("Missing env var: API_KEY");
+  Deno.exit(1);
+}
+if (!CHANNEL_ID) {
+  console.error("Missing env var: CHANNEL_ID");
+  Deno.exit(1);
+}
 
 const params = new URLSearchParams({
   part:        "snippet",
